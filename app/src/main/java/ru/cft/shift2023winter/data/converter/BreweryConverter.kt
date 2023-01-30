@@ -12,8 +12,6 @@ class BreweryConverter @Inject constructor() {
             name = from.name,
             breweryType = from.breweryType,
             street = from.street,
-            address2 = from.address2,
-            address3 = from.address3,
             city = from.city,
             state = from.state,
             countryProvince = from.countryProvince,
