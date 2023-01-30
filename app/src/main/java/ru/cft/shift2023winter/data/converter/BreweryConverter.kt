@@ -2,8 +2,9 @@ package ru.cft.shift2023winter.data.converter
 
 import ru.cft.shift2023winter.data.model.BreweryModel
 import ru.cft.shift2023winter.domain.entity.Brewery
+import javax.inject.Inject
 
-class BreweryConverter {
+class BreweryConverter @Inject constructor() {
 
     fun convert(from: BreweryModel): Brewery =
         Brewery(
