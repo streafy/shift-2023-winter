@@ -4,10 +4,12 @@ import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import ru.cft.shift2023winter.data.LocalDateTimeAdapter
 import ru.cft.shift2023winter.data.api.BreweriesApi
 import ru.cft.shift2023winter.data.converter.BreweryConverter
 import ru.cft.shift2023winter.domain.entity.Brewery
 import ru.cft.shift2023winter.domain.repository.BreweryRepository
+import java.time.LocalDateTime
 import java.util.concurrent.TimeUnit
 
 class BreweryRepositoryImpl : BreweryRepository {
@@ -21,6 +23,7 @@ class BreweryRepositoryImpl : BreweryRepository {
     }
 
     private val gson = GsonBuilder()
+        .registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeAdapter())
         .create()
 
     private val retrofit = Retrofit.Builder()
