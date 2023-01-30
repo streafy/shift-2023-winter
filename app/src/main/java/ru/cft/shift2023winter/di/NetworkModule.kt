@@ -10,7 +10,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
-import ru.cft.shift2023winter.data.LocalDateTimeAdapter
+import ru.cft.shift2023winter.data.serialization.LocalDateTimeDeserializer
 import ru.cft.shift2023winter.data.api.BreweriesApi
 import java.time.LocalDateTime
 import java.util.concurrent.TimeUnit
@@ -45,7 +45,7 @@ class NetworkModule {
     @Provides
     fun provideGson(): Gson =
         GsonBuilder()
-            .registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeAdapter())
+            .registerTypeAdapter(LocalDateTime::class.java, LocalDateTimeDeserializer())
             .create()
 
     @Provides
