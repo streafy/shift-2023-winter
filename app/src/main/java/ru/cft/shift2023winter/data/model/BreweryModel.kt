@@ -8,23 +8,23 @@ data class BreweryModel(
     val name: String,
     @SerializedName("brewery_type")
     val breweryType: String,
-    val street: String,
+    val street: String?,
     @SerializedName("address_2")
-    val address2: String,
+    val address2: String?,
     @SerializedName("address_3")
-    val address3: String,
+    val address3: String?,
     val city: String,
-    val state: String,
+    val state: String?,
     @SerializedName("county_province")
-    val countryProvince: String,
+    val countryProvince: String?,
     @SerializedName("postal_code")
     val postalCode: String,
     val country: String,
-    val longitude: Double,
-    val latitude: Double,
-    val phone : String,
+    val longitude: Double?,
+    val latitude: Double?,
+    val phone : String?,
     @SerializedName("website_url")
-    val websiteUrl: String,
+    val websiteUrl: String?,
     @SerializedName("updated_at")
     val updatedAt: LocalDateTime,
     @SerializedName("created_at")

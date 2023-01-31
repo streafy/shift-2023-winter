@@ -1,4 +1,4 @@
-package ru.cft.shift2023winter.data
+package ru.cft.shift2023winter.data.serialization
 
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
@@ -7,7 +7,7 @@ import java.lang.reflect.Type
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class LocalDateTimeAdapter : JsonDeserializer<LocalDateTime> {
+class LocalDateTimeDeserializer : JsonDeserializer<LocalDateTime> {
 
     override fun deserialize(
         json: JsonElement,
