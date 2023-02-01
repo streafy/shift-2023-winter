@@ -15,6 +15,10 @@ class BreweryRepositoryImpl @Inject constructor(
         breweriesApi.getList()
             .map { brewery -> converter.convert(brewery) }
 
+    override suspend fun getPage(pageNumber: Int): List<Brewery> =
+        breweriesApi.getList()
+            .map { brewery -> converter.convert(brewery) }
+
     override suspend fun getById(id: String): Brewery =
         converter.convert(breweriesApi.getById(id))
 }

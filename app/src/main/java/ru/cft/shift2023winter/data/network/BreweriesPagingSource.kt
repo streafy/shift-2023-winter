@@ -3,8 +3,9 @@ package ru.cft.shift2023winter.data.network
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import ru.cft.shift2023winter.data.model.BreweryModel
+import javax.inject.Inject
 
-class BreweriesPagingSource(
+class BreweriesPagingSource @Inject constructor(
     private val breweriesApi: BreweriesApi
 ) : PagingSource<Int, BreweryModel>() {
 

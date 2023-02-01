@@ -6,5 +6,7 @@ interface BreweryRepository {
 
     suspend fun getList(): List<Brewery>
 
+    suspend fun getPage(pageNumber: Int): List<Brewery>
+
     suspend fun getById(id: String): Brewery
 }
