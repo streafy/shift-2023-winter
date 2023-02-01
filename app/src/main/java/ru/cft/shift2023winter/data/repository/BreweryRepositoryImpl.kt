@@ -1,6 +1,6 @@
 package ru.cft.shift2023winter.data.repository
 
-import ru.cft.shift2023winter.data.api.BreweriesApi
+import ru.cft.shift2023winter.data.network.BreweriesApi
 import ru.cft.shift2023winter.data.converter.BreweryConverter
 import ru.cft.shift2023winter.domain.entity.Brewery
 import ru.cft.shift2023winter.domain.repository.BreweryRepository

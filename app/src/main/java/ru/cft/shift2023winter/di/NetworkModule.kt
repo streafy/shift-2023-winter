@@ -11,7 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 import ru.cft.shift2023winter.data.serialization.LocalDateTimeDeserializer
-import ru.cft.shift2023winter.data.api.BreweriesApi
+import ru.cft.shift2023winter.data.network.BreweriesApi
 import java.time.LocalDateTime
 import java.util.concurrent.TimeUnit
 
