@@ -4,33 +4,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import ru.cft.shift2023winter.R
 import ru.cft.shift2023winter.domain.entity.Brewery
 
-class BreweriesAdapter(
-    private val breweryClickListener: (Brewery) -> Unit
-) : RecyclerView.Adapter<BreweryViewHolder>() {
-
-    var breweries: List<Brewery> = emptyList()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+class BreweryAdapter : PagingDataAdapter<Brewery, BreweryViewHolder>(UserComparator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BreweryViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.breweries_list_item, parent, false)
-        return BreweryViewHolder(view)
+        return BreweryViewHolder(
+            view = inflater.inflate(R.layout.breweries_list_item, parent, false)
+        )
     }
-
-    override fun getItemCount(): Int =
-        breweries.size
 
     override fun onBindViewHolder(holder: BreweryViewHolder, position: Int) {
-        holder.bind(breweries[position], breweryClickListener)
+        holder.bind(getItem(position))
     }
-
 }
 
 class BreweryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -38,13 +29,20 @@ class BreweryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val city get() = itemView.findViewById<TextView>(R.id.city)
     private val address get() = itemView.findViewById<TextView>(R.id.address)
 
-    fun bind(brewery: Brewery, breweryClickListener: (Brewery) -> Unit) {
-        name.text = brewery.name
-        city.text = brewery.city
-        address.text = brewery.street
+    fun bind(brewery: Brewery?) {
+        name.text = brewery?.name ?: "Brewery"
+        city.text = brewery?.city ?: "City"
+        address.text = brewery?.street ?: "Address"
 
-        itemView.setOnClickListener {
-            breweryClickListener(brewery)
-        }
+    }
+}
+
+object UserComparator : DiffUtil.ItemCallback<Brewery>() {
+    override fun areItemsTheSame(oldItem: Brewery, newItem: Brewery): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Brewery, newItem: Brewery): Boolean {
+        return oldItem == newItem
     }
 }
