@@ -13,6 +13,8 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.cft.shift2023winter.R
 import ru.cft.shift2023winter.presentation.BreweriesViewModel
+import ru.cft.shift2023winter.presentation.adapters.BreweryAdapter
+import ru.cft.shift2023winter.presentation.adapters.BreweryLoadStateAdapter
 
 @AndroidEntryPoint
 class BreweriesFragment : Fragment(R.layout.fragment_breweries) {
@@ -25,7 +27,9 @@ class BreweriesFragment : Fragment(R.layout.fragment_breweries) {
         super.onViewCreated(view, savedInstanceState)
 
         recycler = view.findViewById(R.id.breweries)
-        recycler?.adapter = breweryAdapter
+        recycler?.adapter = breweryAdapter.withLoadStateFooter(
+            footer = BreweryLoadStateAdapter(breweryAdapter::retry)
+        )
         recycler?.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
 
         viewLifecycleOwner.lifecycleScope.launch {

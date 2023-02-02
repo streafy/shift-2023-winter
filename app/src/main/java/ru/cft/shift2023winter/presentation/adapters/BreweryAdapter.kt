@@ -1,4 +1,4 @@
-package ru.cft.shift2023winter.presentation.screens
+package ru.cft.shift2023winter.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.View

@@ -1,0 +1,18 @@
+package ru.cft.shift2023winter.presentation.adapters
+
+import android.view.ViewGroup
+import androidx.paging.LoadState
+import androidx.paging.LoadStateAdapter
+import ru.cft.shift2023winter.presentation.LoadStateViewHolder
+
+class BreweryLoadStateAdapter(
+    private val retry: () -> Unit
+) : LoadStateAdapter<LoadStateViewHolder>() {
+    override fun onBindViewHolder(holder: LoadStateViewHolder, loadState: LoadState) =
+        holder.bind(loadState)
+
+    override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState) =
+        LoadStateViewHolder(parent, retry)
+
+
+}
