@@ -9,6 +9,6 @@ import javax.inject.Inject
 class GetBreweriesPageUseCase @Inject constructor(
     private val repository: BreweryRepository
 ) {
-    operator fun invoke(pageNumber: Int): Flow<PagingData<Brewery>> =
+    operator fun invoke(): Flow<PagingData<Brewery>> =
         repository.getPage()
 }
