@@ -15,6 +15,5 @@ class BreweryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         name.text = brewery?.name ?: "Brewery"
         city.text = brewery?.city ?: "City"
         address.text = brewery?.street ?: "Address"
-
     }
 }

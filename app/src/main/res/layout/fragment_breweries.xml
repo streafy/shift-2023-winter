@@ -7,14 +7,14 @@
     tools:context=".presentation.screens.BreweriesFragment">
 
     <ProgressBar
-        android:id="@+id/progress_bar_"
+        android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone" />
 
     <TextView
-        android:id="@+id/error_text"
+        android:id="@+id/error_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

@@ -2,9 +2,13 @@ package ru.cft.shift2023winter.presentation.screens
 
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -36,6 +40,13 @@ class BreweriesFragment : Fragment(R.layout.fragment_breweries) {
             viewModel.getPage().collectLatest { pagingData ->
                 breweryAdapter.submitData(pagingData)
             }
+        }
+
+        val content = view.findViewById<LinearLayout>(R.id.breweries_content)
+        val progressBar = view.findViewById<ProgressBar>(R.id.progress_bar)
+        breweryAdapter.addLoadStateListener { state ->
+            content.isVisible = state.refresh != LoadState.Loading
+            progressBar.isVisible = state.refresh == LoadState.Loading
         }
     }
 

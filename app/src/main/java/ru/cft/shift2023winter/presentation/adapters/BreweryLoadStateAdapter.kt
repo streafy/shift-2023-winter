@@ -13,5 +13,4 @@ class BreweryLoadStateAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState) =
         LoadStateViewHolder(parent, retry)
 
-
 }
