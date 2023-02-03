@@ -11,9 +11,15 @@ class BreweryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val city get() = itemView.findViewById<TextView>(R.id.city)
     private val address get() = itemView.findViewById<TextView>(R.id.address)
 
-    fun bind(brewery: Brewery?) {
+    fun bind(brewery: Brewery?, breweryClickListener: (Brewery) -> Unit) {
         name.text = brewery?.name ?: "Brewery"
         city.text = brewery?.city ?: "City"
         address.text = brewery?.street ?: "Address"
+
+        itemView.setOnClickListener {
+            if (brewery != null) {
+                breweryClickListener(brewery)
+            }
+        }
     }
 }

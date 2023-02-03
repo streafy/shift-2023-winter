@@ -6,7 +6,9 @@ import androidx.paging.PagingDataAdapter
 import ru.cft.shift2023winter.R
 import ru.cft.shift2023winter.domain.entity.Brewery
 
-class BreweryAdapter : PagingDataAdapter<Brewery, BreweryViewHolder>(BreweryComparator) {
+class BreweryAdapter(
+    private val breweryClickListener: (Brewery) -> Unit
+) : PagingDataAdapter<Brewery, BreweryViewHolder>(BreweryComparator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BreweryViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -16,6 +18,6 @@ class BreweryAdapter : PagingDataAdapter<Brewery, BreweryViewHolder>(BreweryComp
     }
 
     override fun onBindViewHolder(holder: BreweryViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), breweryClickListener)
     }
 }

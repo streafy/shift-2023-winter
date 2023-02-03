@@ -9,33 +9,47 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
+import dagger.hilt.android.AndroidEntryPoint
 import ru.cft.shift2023winter.R
 import ru.cft.shift2023winter.domain.entity.Brewery
 import ru.cft.shift2023winter.presentation.DetailsUiState
 import ru.cft.shift2023winter.presentation.DetailsViewModel
 
+@AndroidEntryPoint
 class DetailsFragment : Fragment(R.layout.fragment_details) {
 
-    private val progressBar get() = requireView().findViewById<ProgressBar>(R.id.progress_bar)
-    private val errorMessage get() = requireView().findViewById<TextView>(R.id.error_message)
-    private val detailsContent get() = requireView().findViewById<LinearLayout>(R.id.details_content)
+    private lateinit var progressBar: ProgressBar
+    private lateinit var errorMessage: TextView
+    private lateinit var detailsContent: LinearLayout
 
-    private val name = requireView().findViewById<TextView>(R.id.name)
-    private val address = requireView().findViewById<TextView>(R.id.address)
-    private val phone = requireView().findViewById<TextView>(R.id.phone)
-    private val website = requireView().findViewById<TextView>(R.id.website)
+    private lateinit var name: TextView
+    private lateinit var address: TextView
+    private lateinit var phone: TextView
+    private lateinit var website: TextView
+
+    private val args: DetailsFragmentArgs by navArgs()
 
     private val viewModel: DetailsViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        progressBar = view.findViewById(R.id.progress_bar)
+        errorMessage = view.findViewById(R.id.error_message)
+        detailsContent = view.findViewById(R.id.details_content)
+
+        name = view.findViewById(R.id.name)
+        address = view.findViewById(R.id.address)
+        phone = view.findViewById(R.id.phone)
+        website = view.findViewById(R.id.website)
+
         lifecycleScope.launchWhenStarted {
             viewModel.state
                 .collect(::handleState)
         }
 
-        viewModel.loadData()
+        viewModel.loadData(args.breweryId)
     }
 
     private fun handleState(state: DetailsUiState) {
