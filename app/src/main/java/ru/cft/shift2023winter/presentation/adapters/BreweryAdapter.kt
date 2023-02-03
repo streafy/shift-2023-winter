@@ -8,7 +8,7 @@ import ru.cft.shift2023winter.domain.entity.Brewery
 
 class BreweryAdapter(
     private val breweryClickListener: (Brewery) -> Unit
-) : PagingDataAdapter<Brewery, BreweryViewHolder>(BreweryComparator) {
+) : PagingDataAdapter<Brewery, BreweryViewHolder>(BreweryDiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BreweryViewHolder {
         val inflater = LayoutInflater.from(parent.context)
