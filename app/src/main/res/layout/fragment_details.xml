@@ -54,6 +54,12 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             tools:text="brewery.com" />
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back"/>
     </LinearLayout>
 
 

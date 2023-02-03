@@ -2,6 +2,7 @@ package ru.cft.shift2023winter.presentation.screens
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -9,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import ru.cft.shift2023winter.R
@@ -27,6 +29,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
     private lateinit var address: TextView
     private lateinit var phone: TextView
     private lateinit var website: TextView
+    private lateinit var backButton: Button
 
     private val args: DetailsFragmentArgs by navArgs()
 
@@ -43,6 +46,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
         address = view.findViewById(R.id.address)
         phone = view.findViewById(R.id.phone)
         website = view.findViewById(R.id.website)
+        backButton = view.findViewById(R.id.backButton)
 
         lifecycleScope.launchWhenStarted {
             viewModel.state
@@ -76,6 +80,13 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
         address.text = brewery.street
         phone.text = brewery.phone
         website.text = brewery.websiteUrl
+
+        backButton.setOnClickListener {
+            val navController = findNavController()
+
+            val action = DetailsFragmentDirections.actionDetailsFragmentToBreweriesFragment()
+            navController.navigate(action)
+        }
     }
 
     private fun showError(message: String?) {
