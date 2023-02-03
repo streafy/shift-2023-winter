@@ -27,6 +27,8 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
     private lateinit var name: TextView
     private lateinit var address: TextView
+    private lateinit var city: TextView
+    private lateinit var counrty: TextView
     private lateinit var phone: TextView
     private lateinit var website: TextView
     private lateinit var backButton: Button
@@ -44,6 +46,8 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
         name = view.findViewById(R.id.name)
         address = view.findViewById(R.id.address)
+        city = view.findViewById(R.id.city)
+        counrty = view.findViewById(R.id.country)
         phone = view.findViewById(R.id.phone)
         website = view.findViewById(R.id.website)
         backButton = view.findViewById(R.id.backButton)
@@ -78,6 +82,8 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
         name.text = brewery.name
         address.text = brewery.street
+        city.text = brewery.city
+        counrty.text = brewery.country
         phone.text = brewery.phone
         website.text = brewery.websiteUrl
 
