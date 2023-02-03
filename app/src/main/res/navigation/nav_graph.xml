@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@+id/breweries_fragment">
 
     <fragment
         android:id="@+id/breweries_fragment"
         android:name="ru.cft.shift2023winter.presentation.screens.BreweriesFragment"
-        android:label="BreweriesFragment"/>
+        android:label="BreweriesFragment"
+        tools:layout="@layout/fragment_breweries">
+        <action
+            android:id="@+id/action_breweries_fragment_to_details_fragment"
+            app:destination="@id/details_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/details_fragment"
+        android:name="ru.cft.shift2023winter.presentation.screens.DetailsFragment"
+        android:label="DetailsFragment"
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="breweryId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_details_fragment_to_breweries_fragment"
+            app:destination="@id/breweries_fragment"
+            app:popUpTo="@id/breweries_fragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
